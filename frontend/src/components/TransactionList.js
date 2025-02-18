@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Table, Container } from "react-bootstrap";
+import API_BASE_URL from "../config";
+
 
 const TransactionList = ({ refresh }) => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/transactions/")
+    axios.get(`${API_BASE_URL}/transactions/`)
       .then(response => setTransactions(response.data))
       .catch(error => console.error("Veri çekme hatası:", error));
   }, [refresh]);

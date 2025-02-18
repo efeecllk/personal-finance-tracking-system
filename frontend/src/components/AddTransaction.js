@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
+import API_BASE_URL from "../config";
+
+
 
 const AddTransaction = ({ refresh }) => {
   const [amount, setAmount] = useState("");
@@ -9,7 +12,7 @@ const AddTransaction = ({ refresh }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://127.0.0.1:8000/transactions/", { amount, category, description })
+    axios.post(`${API_BASE_URL}/transactions/`, { amount, category, description })
       .then(() => {
         refresh();
         setAmount("");

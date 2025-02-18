@@ -23,3 +23,15 @@ def add_transaction(amount: float, category: str, description: str = "", db: Ses
 @app.delete("/transactions/{transaction_id}")
 def remove_transaction(transaction_id: int, db: Session = Depends(get_db)):
     return crud.delete_transaction(db, transaction_id)
+
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  
+    allow_credentials=True,
+    allow_methods=["*"],  # 
+    allow_headers=["*"],  # 
+)
+
