@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from database import SessionLocal
 import crud
+from schemas import TransactionCreate
 
 app = FastAPI()
 
@@ -11,6 +12,13 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+@app.post("/transactions/")
+def add_transaction(transaction: TransactionCreate, db: Session = Depends(get_db)):
+    return crud.create_transaction(db, transaction.amount, transaction.category, transaction.description)
+
+
 
 @app.get("/transactions/")
 def read_transactions(db: Session = Depends(get_db)):

@@ -10,7 +10,7 @@ function App() {
 
   return (
     <Container className="mt-5">
-      <h1 className="text-center mb-4">📊 Kişisel Finans Takibi</h1>
+      <h1 className="text-center mb-4">📊 Personal Finance Tracking System</h1>
       <AddTransaction refresh={refresh} />
       <TransactionList refresh={refreshTrigger} />
     </Container>
